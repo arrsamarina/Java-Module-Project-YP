@@ -13,9 +13,8 @@ public class Calculator {
         while (true){
             System.out.println("Добавление нового товара");
             System.out.print("Введите название товара: ");
-            String productName = scanner.next();
+            String productName = scanner.nextLine();
             System.out.println("Введите стоимость этого товара. Стоимость должна быть в формате рубли.копейки, например 10.45 или 11.40");
-
             double price = 0.0;
             while (true) {
                 String input = scanner.next();
@@ -37,7 +36,8 @@ public class Calculator {
             System.out.println("Хотите ли вы добавить ещё один товар? Если нет - введите \"Завершить\"");
             Scanner scanner3 = new Scanner(System.in);
             String wish = scanner3.next();
-            if (wish.equalsIgnoreCase("Завершить")) break;
+            if (wish.equalsIgnoreCase("Завершить"))
+                break;
         }
         scanner.close();
     }
