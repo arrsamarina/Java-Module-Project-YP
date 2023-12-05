@@ -11,7 +11,7 @@ public class Calculator {
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.ENGLISH);
         while (true){
-            System.out.println("Добавление нового товара");
+            System.out.println("Добавление нового товара!");
             System.out.print("Введите название товара: ");
             String productName = scanner.nextLine();
             System.out.println("Введите стоимость этого товара. Стоимость должна быть в формате рубли.копейки, например 10.45 или 11.40");
