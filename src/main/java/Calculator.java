@@ -11,31 +11,37 @@ public class Calculator {
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.ENGLISH);
         while (true){
-            System.out.println("Добавление нового товара!");
+            System.out.println("Добавление нового товара.");
             System.out.print("Введите название товара: ");
             String productName = scanner.nextLine();
+            productName = productName.trim();
             System.out.println("Введите стоимость этого товара. Стоимость должна быть в формате рубли.копейки, например 10.45 или 11.40");
             double price = 0.0;
             while (true) {
                 String input = scanner.nextLine();
-                if (input.contains(".")) {
+                input = input.trim();
+                if (input.matches("\\d+\\.\\d+")) { //& (!input.matches("^0\\d+\\.\\d+$")) - можно ещё добавить такое условие, чтобы запретить ввод значений, начинающихся с 0, но незначащие нули удаляются, поэтому это можно и не делать
                     try {
                         price = Double.parseDouble(input);
-                        break;
+                        if (price >= 0) {
+                            break;
+                        } else {
+                            System.out.println("Некорректный ввод. Пожалуйста, введите положительное число с дробной частью, используя точку:");
+                        }
                     } catch (NumberFormatException e) {
-                        System.out.println("Некорректный ввод. Пожалуйста, введите число с дробной частью:");
+                        System.out.println("Некорректный ввод. Пожалуйста, введите положительное число с дробной частью, используя точку:");
                     }
                 } else {
-                    System.out.println("Некорректный ввод. Пожалуйста, введите число с дробной частью:");
+                    System.out.println("Некорректный ввод. Пожалуйста, введите положительное число с дробной частью, используя точку:");
                 }
             }
-            //scanner.nextLine();
             products.put(productName, price);
             System.out.println("Товар успешно добавлен!");
             sumBill = sumBill + price;
             System.out.println("Хотите ли вы добавить ещё один товар? Если нет - введите \"Завершить\"");
             Scanner sc = new Scanner(System.in);
             String wish = sc.nextLine();
+            wish = wish.trim();
             if (wish.equalsIgnoreCase("Завершить"))
                 break;
         }
